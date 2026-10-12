@@ -219,8 +219,7 @@ main{ min-height:60vh; }
 .chip{
   display:flex; align-items:center; gap:8px; background:var(--paper); border:1.5px dashed var(--line-strong);
   padding:8px 8px 8px 14px; border-radius:8px; font-family:'IBM Plex Mono',monospace; font-size:13.5px; font-weight:600;
-  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
-  padding-right:20px;
+  padding-right:10px;
 }
 .chip button{ background:var(--ink); color:#fff; width:18px; height:18px; border-radius:999px; font-size:11px; line-height:1;}
 .suggestions{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
@@ -542,7 +541,7 @@ footer.site{ background:var(--brown); color:#f1e7d8; margin-top:60px; padding:50
     <p>Real talk — madalas may natitirang sangkap sa bahay na di natin alam gagawin. May times din na super tipid ang budget pero gusto pa rin ng masarap na ulam. Yun mismo yung sitwasyon na sinasagot ng Pinoy Palink.</p>
 
     <h2>Paano gamitin?</h2>
-    <p>Sa <strong>Meron Ako</strong>, i-type mo lang mga sangkap na meron ka, tapos lalabas agad recipes na bagay dun, plus alam mo na kung ano pang kulang. Sa <strong>Budget Ko</strong> naman, sabihin mo lang magkano gugulin mo, at ipapakita namin lutong Pinoy na kasya dun — tantiya lang 'yung presyo ha, hindi 'yun exact.</p>
+    <p>Sa <strong>Meron Ako</strong>, i-type mo lang mga sangkap na meron ka, tapos lalabas agad recipes na bagay dun, plus alam mo na kung ano pang kulang. Sa <strong>Budget Ko</strong> naman, sabihin mo lang magkano gugulin mo, at ipapakita namin lutong Pinoy na kasya dun — tandaan lang na estimated ang mga presyo at maaaring mag-iba depende sa lugar.</p>
 
     <h2>Para kanino 'to?</h2>
     <p>Ginawa namin 'to para sa mga estudyante, sa mga nag-iisang nakatira, sa mga pamilyang Pinoy, at sa kahit sinong gustong kumain ng masarap nang hindi sinasayang ang pera o pagkain.</p>
@@ -566,7 +565,7 @@ footer.site{ background:var(--brown); color:#f1e7d8; margin-top:60px; padding:50
         <button onclick="go('about')">About</button>
       </div>
     </div>
-    <div class="footer-bottom">Student project lang po 'to — Bataan Peninsula State University. FYI, tantiya lang mga presyo dito, pwedeng iba sa totoo.</div>
+    <div class="footer-bottom">© 2026 Pinoy Palink. Hanapin. Lutuin. Masulit.</div>
   </div>
 </footer>
 
@@ -590,14 +589,14 @@ const INGREDIENTS = {
 };
 
 // Estimated palengke/grocery prices per typical portion used in one recipe (NOT per kilo).
-// Based on general DA price-watch ranges for Metro Manila; actual prices vary by store/location/season.
+// Based on the DA Weekly Average Prices (NCR, October 5-11, 2026) and Daily Price Index (October 12, 2026); actual prices vary by store/location/season.
 const INGREDIENT_PRICES = {
-  rice:15, egg:9, onion:8, garlic:5, tomato:10, oil:5, sardines:25,
-  chicken:90, soy:3, vinegar:3, bayleaf:2, pepper:2, veggies:35,
-  shrimp_paste:8, bihon:25, carrots:8, cabbage:10, ginger:5, malunggay:5,
-  fish_sauce:3, mongo:20, pork:110, tamarind:12, gabi:10, kangkong:10,
-  banana:4, lumpia_wrapper:2, sugar:5, fish:70, eggplant:8, sago:10,
-  gulaman:10, brown_sugar:8, flour:6
+  rice:11, egg:8, onion:17, garlic:6, tomato:15, oil:5, sardines:27,
+  chicken:100, soy:4, vinegar:3, bayleaf:2, pepper:2, veggies:35,
+  shrimp_paste:8, bihon:25, carrots:12, cabbage:24, ginger:4, malunggay:5,
+  fish_sauce:3, mongo:15, pork:110, tamarind:12, gabi:10, kangkong:10,
+  banana:8, lumpia_wrapper:2, sugar:4, fish:86, eggplant:18, sago:10,
+  gulaman:10, brown_sugar:7, flour:6
 };
 
 const RECIPES = [
@@ -1031,7 +1030,7 @@ function renderRecipeDetails(){
           <div class="r-title">Estimated na Gastos</div>
           ${r.ingredients.map(i=>`<div class="r-row"><span>${INGREDIENTS[i]||i} <span class="mono" style="opacity:.65; font-size:11.5px;">(${(QUANTITIES[r.id]&&QUANTITIES[r.id][i])||''})</span></span><span>₱${INGREDIENT_PRICES[i]||0}</span></div>`).join('')}
           <div class="r-row total"><span>Total (est.)</span><span>₱${r.cost}</span></div>
-          <div style="font-size:10.5px; color:var(--green); opacity:.8; margin-top:8px; text-align:center;">tantiya lang base sa palengke — pwedeng iba depende sa lugar</div>
+          <div style="font-size:10.5px; color:var(--green); opacity:.8; margin-top:8px; text-align:center;">Estimated prices based on local markets. Prices may vary by location.</div>
         </div>
       </div>
       <div>
